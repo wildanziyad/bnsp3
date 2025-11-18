@@ -1,9 +1,322 @@
+cd ~/bnsp3/app
+cat > index.html << 'EOF'
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>My Cloud App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNSP3 System Integrator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #4a5568;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .status-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #48bb78;
+        }
+
+        .status-title {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            background: #48bb78;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #4a5568;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .monitoring-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #edf2f7;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        .system-info {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            text-align: left;
+        }
+
+        .info-item {
+            padding: 10px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            color: #718096;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+            
+            .monitoring-links {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello from Docker & VPS!</h1>
+    <div class="container">
+        <div class="logo">🚀</div>
+        
+        <h1>BNSP3 System Integrator</h1>
+        <p class="subtitle">Cloud Computing & DevOps Implementation</p>
+        
+        <div class="status-container">
+            <div class="status-title">
+                <span>System Status</span>
+            </div>
+            <div class="status-badge">✅ SEMUA SYSTEM BERJALAN</div>
+        </div>
+
+        <div class="system-info">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">📍 Server Location</div>
+                    <div class="info-value">VPS Cloud Indonesia</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">🐳 Container Engine</div>
+                    <div class="info-value">Docker 29.0.2</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">🌐 Web Server</div>
+                    <div class="info-value">Nginx Alpine</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">🔄 CI/CD</div>
+                    <div class="info-value">GitHub Actions</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <div class="tech-item">Docker</div>
+            <div class="tech-item">VPS</div>
+            <div class="tech-item">Nginx</div>
+            <div class="tech-item">GitHub Actions</div>
+            <div class="tech-item">Prometheus</div>
+            <div class="tech-item">Grafana</div>
+        </div>
+
+        <div class="monitoring-links">
+            <a href="http://103.139.193.31:3000" target="_blank" class="btn btn-primary">
+                📊 Grafana Dashboard
+            </a>
+            <a href="http://103.139.193.31:9090" target="_blank" class="btn btn-secondary">
+                📈 Prometheus Metrics
+            </a>
+            <a href="https://github.com/wildanziyad/bnsp3" target="_blank" class="btn btn-secondary">
+                💻 Source Code
+            </a>
+        </div>
+
+        <div class="footer">
+            © 2024 BNSP3 System Integrator - Docker, VPS, CI/CD & Monitoring
+        </div>
+    </div>
+
+    <script>
+        // Simple real-time clock
+        function updateClock() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'Asia/Jakarta'
+            };
+            document.getElementById('current-time').textContent = 
+                now.toLocaleDateString('id-ID', options);
+        }
+        
+        // Tambahkan elemen waktu jika ingin menampilkan
+        const clockElement = document.createElement('div');
+        clockElement.className = 'info-item';
+        clockElement.innerHTML = `
+            <div class="info-label">🕐 Waktu Server</div>
+            <div class="info-value" id="current-time"></div>
+        `;
+        document.querySelector('.info-grid').appendChild(clockElement);
+        
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Animasi tambahan untuk tech items
+        document.querySelectorAll('.tech-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                this.style.color = 'white';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(135deg, #edf2f7, #e2e8f0)';
+                this.style.color = '#4a5568';
+            });
+        });
+    </script>
 </body>
 </html>
+EOF
